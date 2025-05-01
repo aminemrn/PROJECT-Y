@@ -1,8 +1,13 @@
-// Initialize dc object
 var dc = {};
 
+// ADD THIS FUNCTION (missing in your code)
+function showLoading(selector) {
+  var html = "<div class='text-center'>";
+  html += "<img src='images/ajax-loader.gif'></div>";
+  document.querySelector(selector).innerHTML = html;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-  // Load home page on startup
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
     "https://davids-restaurant.herokuapp.com/categories.json",
@@ -15,7 +20,6 @@ function buildAndShowHomeHTML(categories) {
   $ajaxUtils.sendGetRequest(
     "snippets/home-snippet.html",
     function(homeHtml) {
-      // Pick random category
       var randomCategory = categories[Math.floor(Math.random() * categories.length)];
       var modifiedHtml = homeHtml.replace(
         "{{randomCategoryShortName}}", 
@@ -27,6 +31,4 @@ function buildAndShowHomeHTML(categories) {
   );
 }
 
-// Other functions remain the same as starter code
-dc.loadMenuCategories = function() { /* ... */ };
-dc.loadMenuItems = function(categoryShort) { /* ... */ };
+// Rest of your functions...
