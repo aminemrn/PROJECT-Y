@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>David Chu's China Bistro</title>
-  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-default">
+  <nav id="header-nav" class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
-        <a href="index.html" class="navbar-brand">David Chu's China Bistro</a>
+        <a href="index.html" class="navbar-brand">
+          <h1>David Chu's China Bistro</h1>
+        </a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#" onclick="dc.loadMenuCategories();">Menu</a></li>
+      <ul id="nav-list" class="nav navbar-nav navbar-right">
+        <li id="navHomeButton" class="active">
+          <a href="index.html">
+            <span class="glyphicon glyphicon-home"></span> Home
+          </a>
+        </li>
+        <li id="navMenuButton">
+          <a href="#" onclick="dc.loadMenuCategories();">
+            <span class="glyphicon glyphicon-cutlery"></span> Menu
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div id="main-content" class="container"></div>
 
-  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js/ajax_utils.js"></script>
   <script src="js/script.js"></script>
