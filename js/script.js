@@ -1,56 +1,31 @@
 var dc = {};
 
 function showLoading(selector) {
-  var html = "<div class='text-center'>";
-  html += "<img src='images/ajax-loader.gif'></div>";
-  document.querySelector(selector).innerHTML = html;
+  document.querySelector(selector).innerHTML = '<div class="text-center">Loading...</div>';
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  showLoading("#main-content");
-  $ajaxUtils.sendGetRequest(
-    "https://davids-restaurant.herokuapp.com/categories.json",
-    buildAndShowHomeHTML,
-    true
-  );
+  // HARDCODED TEST - REMOVE LATER
+  document.querySelector("#main-content").innerHTML = `
+    <div class="row">
+      <div class="col-md-4">
+        <a href="#" onclick="dc.loadMenuItems('L')">
+          <div class="tile">TEST MENU</div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" onclick="dc.loadMenuItems('D')">
+          <div class="tile">TEST SPECIALS</div>
+        </a>
+      </div>
+    </div>
+  `;
+  
+  // Uncomment this later when basic layout works
+  // showLoading("#main-content");
+  // $ajaxUtils.sendGetRequest("categories.json", buildAndShowHomeHTML, true);
 });
 
-function buildAndShowHomeHTML(categories) {
-  $ajaxUtils.sendGetRequest(
-    "snippets/home-snippet.html",
-    function(homeHtml) {
-      var randomCategory = categories[Math.floor(Math.random() * categories.length)];
-      var modifiedHtml = homeHtml.replace(
-        "{{randomCategoryShortName}}", 
-        "'" + randomCategory.short_name + "'"
-      );
-      document.querySelector("#main-content").innerHTML = modifiedHtml;
-    },
-    false
-  );
-}
-
-dc.loadMenuCategories = function() {
-  showLoading("#main-content");
-  $ajaxUtils.sendGetRequest(
-    "https://davids-restaurant.herokuapp.com/categories.json",
-    buildAndShowCategoriesHTML
-  );
+dc.loadMenuItems = function(cat) {
+  alert("Would load category: " + cat); // Test if clicks work
 };
-
-dc.loadMenuItems = function(categoryShort) {
-  showLoading("#main-content");
-  $ajaxUtils.sendGetRequest(
-    "https://davids-restaurant.herokuapp.com/menu_items.json?category=" + categoryShort,
-    buildAndShowMenuItemsHTML
-  );
-};
-
-// Helper functions (keep these at the bottom)
-function buildAndShowCategoriesHTML(categories) {
-  /* ... existing code ... */
-}
-
-function buildAndShowMenuItemsHTML(categoryMenuItems) {
-  /* ... existing code ... */
-}
