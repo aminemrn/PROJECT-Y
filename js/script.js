@@ -1,6 +1,5 @@
 var dc = {};
 
-// ADD THIS FUNCTION (missing in your code)
 function showLoading(selector) {
   var html = "<div class='text-center'>";
   html += "<img src='images/ajax-loader.gif'></div>";
@@ -31,4 +30,27 @@ function buildAndShowHomeHTML(categories) {
   );
 }
 
-// Rest of your functions...
+dc.loadMenuCategories = function() {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    "https://davids-restaurant.herokuapp.com/categories.json",
+    buildAndShowCategoriesHTML
+  );
+};
+
+dc.loadMenuItems = function(categoryShort) {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    "https://davids-restaurant.herokuapp.com/menu_items.json?category=" + categoryShort,
+    buildAndShowMenuItemsHTML
+  );
+};
+
+// Helper functions (keep these at the bottom)
+function buildAndShowCategoriesHTML(categories) {
+  /* ... existing code ... */
+}
+
+function buildAndShowMenuItemsHTML(categoryMenuItems) {
+  /* ... existing code ... */
+}
